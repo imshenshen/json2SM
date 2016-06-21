@@ -3,7 +3,7 @@
   "properties": {
     "code": {
       "type": "number",
-      "pattern": "/\w/"
+      "patterni": "/w/"
     },
     "message": {
       "type": "string",
