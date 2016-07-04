@@ -1,0 +1,172 @@
+{
+    "route": "get,/customer/all",
+    "doc": {
+        "type": "markdown",
+        "path": "gongsibao-crm/customer.md",
+        "title": "全部客户列表",
+        "desc": ""
+    },
+    "params": {
+        "isAccountName": {
+            "necessary": false,
+            "desc": "是否是会员，0=否，1=是"
+        },
+        "followUserName": {
+            "necessary": false,
+            "desc": "跟进人"
+        },
+        "addUserName": {
+            "necessary": false,
+            "desc": "创建人"
+        },
+        "realName": {
+            "necessary": false,
+            "desc": "客户名称"
+        },
+        "mobile": {
+            "necessary": false,
+            "desc": "手机"
+        },
+        "telephone": {
+            "necessary": false,
+            "desc": "座机"
+        },
+        "qq": {
+            "necessary": false,
+            "desc": "QQ"
+        },
+        "important": {
+            "necessary": false,
+            "desc": "客户等级"
+        },
+        "followStatus": {
+            "necessary": false,
+            "desc": "沟通状态"
+        },
+        "intentionProductNames": {
+            "necessary": false,
+            "desc": "意向产品"
+        },
+        "beginTime": {
+            "necessary": false,
+            "desc": "创建时间"
+        },
+        "endTime": {
+            "necessary": false,
+            "desc": "创建时间"
+        }
+    },
+    "result": {
+        "type": "object",
+        "properties": {
+            "code": 200,
+            "data": {
+                "type": "object",
+                "properties": {
+                    "totalRows": 12,
+                    "pageSize": 10,
+                    "currentPage": 1,
+                    "totalPages": 2,
+                    "list": {
+                        "type": "array",
+                        "maxItems": 3,
+                        "minItems": 6,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "pkid": {
+                                    "type": "integer",
+                                    "faker": "random.number",
+                                    "desc": "序号"
+                                },
+                                "isAccountName": {
+                                    "type": "boolean",
+                                    "faker": "random.boolean",
+                                    "desc": "是否是会员"
+                                },
+                                "realName": {
+                                    "type": "string",
+                                    "faker": "name.firstName",
+                                    "desc": "客户名称"
+                                },
+                                "cityName": {
+                                    "type": "string",
+                                    "faker": "address.city",
+                                    "desc": "所在地区"
+                                },
+                                "mobile": {
+                                    "type": "string",
+                                    "faker": "phone.phoneNumber",
+                                    "desc": "手机"
+                                },
+                                "telephone": {
+                                    "type": "string",
+                                    "faker": "phone.phoneNumber",
+                                    "desc": "座机"
+                                },
+                                "qq": {
+                                    "type": "string",
+                                    "pattern": "[1-9]{5,8}",
+                                    "desc": "QQ号"
+                                },
+                                "customerSourceName": {
+                                    "type": "string",
+                                    "faker": "lorem.word",
+                                    "desc": "客户来源"
+                                },
+                                "importantName":{
+                                    "type":"string",
+                                    "pattern":"VIP",
+                                    "desc":"客户等级"
+                                },
+                                "followStatusName":{
+                                    "type":"string",
+                                    "pattern":"沟通中",
+                                    "desc":"沟通状态"
+                                },
+                                "intentionProductNames":{
+                                     "type":"string",
+                                     "pattern":"公司注册",
+                                     "desc":"意向产品"
+                                },
+                                "followUserName":{
+                                     "type":"string",
+                                     "pattern":"name.firstName",
+                                     "desc":"跟进人"
+                                },
+                                "followUserName":{
+                                     "type":"string",
+                                     "pattern":"name.firstName",
+                                     "desc":"跟进人"
+                                },
+                                "addUserName":{
+                                     "type":"string",
+                                     "pattern":"name.firstName",
+                                     "desc":"创建人"
+                                },
+                                "addTime":{
+                                     "type":"string",
+                                     "faker" :"date.past",
+                                     "desc":"创建时间"
+                                },
+                                "hadProdNums" :{
+                                    "type":"integer",
+                                    "faker": "random.number",
+                                    "desc":"已购产品件数"
+                                },
+                                "unfollowDays" :{
+                                    "type":"integer",
+                                    "faker": "random.number",
+                                    "desc":"未跟进天数"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
