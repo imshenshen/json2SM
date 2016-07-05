@@ -15,7 +15,7 @@ commander
     .version('0.0.1')
     .option('-s,--server','create a api server')
     .option('-p,--port [port]', 'http server port. default 8877','8877')
-    .option('-o,--output','generate document to the output path. defaults to \"build\"',"build")
+    .option('-o,--output [output]','generate document to the output path. defaults to \"build\"')
     .parse(process.argv);
 
 if(commander.server){
@@ -27,8 +27,11 @@ if(commander.server){
     console.log("create an api server on port %s : ", port);
 }
 if(commander.output){
-    console.log(commander.output);
     var output = commander.output;
+    if(typeof commander.output == "boolean"){
+        output = "build";
+    }
+    console.log(output);
     docGenerator.config({
         output:output
     });
