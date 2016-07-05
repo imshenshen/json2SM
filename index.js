@@ -5,6 +5,7 @@ var commander = require("commander");
 var fs = require("fs");
 var fse = require("fs-extra");
 var path = require("path");
+var yaml = require('js-yaml');
 
 var server = require("./lib/server");
 var docGenerator = require("./lib/docGenerator");
@@ -40,7 +41,7 @@ if(commander.output){
 
 
 
-glob("**/*.json",function(err,files){
+glob("**/*.{json,yaml,yml}",function(err,files){
 //glob("test.json",function(err,files){
     if(err){
         return console.log(err);
@@ -52,7 +53,12 @@ glob("**/*.json",function(err,files){
                     return console.log(err);
                 }
                 try {
-                    var config = JSON.parse(data);
+                    var config;
+                    if(/\S+.(yaml|yml)$/gi.test(files[i])){
+                        config = yaml.load(data);
+                    }else{
+                        config = JSON.parse(data);
+                    }
                     if(config.route&&commander.server){
                         server.addRoute(config,files[i]);
                     }
@@ -62,7 +68,7 @@ glob("**/*.json",function(err,files){
                         docGenerator.writeFile(config.doc,result);
                     }
                 }catch(err){
-                    console.log("parse json file " + files[i]+" error")
+                    console.log("parse file " + files[i]+" error")
                     console.log(err);
                 }
             });
