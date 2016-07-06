@@ -46,6 +46,8 @@ glob("**/*.{json,yaml,yml}",function(err,files){
     if(err){
         return console.log(err);
     }
+    var docs = {};
+    var st = null;
     for (var i = 0, len = files.length; i < len; i++) {
         (function(i){
             fs.readFile(process.cwd()+"/"+files[i],"utf-8",function(err,data){
@@ -65,7 +67,13 @@ glob("**/*.{json,yaml,yml}",function(err,files){
                     if(config.doc && commander.output){
                         console.log("begin to generate document");
                         var result = docGenerator.gen(config,files[i]);
-                        docGenerator.writeFile(config.doc,result);
+                        var path = config.doc.path;
+                        docs[path] = docs[path] || "";
+                        docs[path] += result+"\n -------- \n";
+                        clearTimeout(st);
+                        st = setTimeout(function(){
+                            docGenerator.writeFile(docs);
+                        },3000);
                     }
                 }catch(err){
                     console.log("parse file " + files[i]+" error")
