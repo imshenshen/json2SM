@@ -50,7 +50,8 @@ glob("**/*.{json,yaml,yml}",function(err,files){
     var st = null;
     for (var i = 0, len = files.length; i < len; i++) {
         (function(i){
-            fs.readFile(process.cwd()+"/"+files[i],"utf-8",function(err,data){
+            var filepath = process.cwd()+"/"+files[i];
+            fs.readFile(filepath,"utf-8",function(err,data){
                 if(err){
                     return console.log(err);
                 }
@@ -62,11 +63,11 @@ glob("**/*.{json,yaml,yml}",function(err,files){
                         config = JSON.parse(data);
                     }
                     if(config.route&&commander.server){
-                        server.addRoute(config,files[i]);
+                        server.addRoute(config,files[i],filepath.substring(0,filepath.lastIndexOf("/")+1));
                     }
                     if(config.doc && commander.output){
                         console.log("begin to generate document");
-                        var result = docGenerator.gen(config,files[i]);
+                        var result = docGenerator.gen(config,filepath.substring(0,filepath.lastIndexOf("/")+1));
                         var path = config.doc.path;
                         docs[path] = docs[path] || "";
                         docs[path] += result+"\n -------- \n";
