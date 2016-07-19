@@ -1,0 +1,19 @@
+route : get,/faker/faker
+result:
+    type: array
+    maxItems: 1
+    minItems: 1
+    items:
+        type: object
+        properties:
+            email:
+                desc: Email, only gmail
+                faker: internet.email
+            name:
+                desc: User Name
+                faker: '{{name.findName}} -- {{company.companyName}} : {{internet.email}} '
+            isVip:
+                pattern: (0|1)
+                type: integer
+            welcome:
+                pattern: !!js/regexp /hello+ (world|to you)/i

@@ -1,0 +1,6 @@
+email:
+    desc: Email, only gmail
+    faker: internet.email
+name:
+    desc: User Name
+    faker: '{{name.findName}} -- {{company.companyName}} : {{internet.email}} '

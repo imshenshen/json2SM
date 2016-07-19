@@ -1,0 +1,16 @@
+doc:
+    type: markdown
+    path: single.md
+    title: 'this is interface 1'
+params:
+    uuid:
+        necessary: true
+        desc: 'some desc'
+    date:
+        desc: 'some date'
+    city:
+    sex:
+result:
+    type: object
+    properties:
+        code: 200

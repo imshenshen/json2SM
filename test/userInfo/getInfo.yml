@@ -1,0 +1,46 @@
+route : get,/api/user/info
+doc:
+    type: markdown
+    path: userInfo/user.md
+    title: 客户信息
+params:
+    userId:
+        necessary: true
+        desc : 用户ID
+result:
+    type: object
+    properties:
+        code: 200
+        data:
+            type: object
+            properties:
+                pkidStr:
+                realName:
+                    desc: 姓名
+                    faker: name.findName
+                sex:
+                    type: integer
+                    desc: '性别 0保密 1男 2女'
+                    pattern: !!js/regexp /[0-2]/
+                email:
+                    desc: Email
+                    faker: internet.email
+                qq:
+                    pattern: !!js/regexp /[1-9]{6,9}/
+                isVip:
+                    type: integer
+                    pattern: "(1|0)"
+                    desc: 是否是会员
+                files:
+                    desc: 用户名片
+                    type: array
+                    minItems: 0
+                    maxItems: 3
+                    items:
+                        type: object
+                        properties:
+                            name:
+                                desc: 文件名
+                                faker: lorem.word
+                            url:
+                                faker: image.imageUrl

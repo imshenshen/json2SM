@@ -1,0 +1,13 @@
+route : get,/array/array-array
+result:
+    type: array
+    maxItems: 2
+    items:
+        type: array
+        maxItems: 2
+        minItems: 1
+        items:
+            type: object
+            properties:
+                name:
+                    faker: name.findName

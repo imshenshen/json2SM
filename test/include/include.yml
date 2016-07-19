@@ -1,0 +1,15 @@
+route : get,/include
+result:
+    type: object
+    properties:
+        includeString:
+            type: object
+            properties:
+                $include: ./common/common1.yml
+        includeArray:
+            type: object
+            properties:
+                $include:
+                    - ./common/common1.yml
+                    - include/common/common2.yml
+        code: hehehe

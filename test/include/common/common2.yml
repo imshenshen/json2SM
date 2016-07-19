@@ -1,0 +1,5 @@
+isVip:
+    pattern: (0|1)
+    type: integer
+welcome:
+    pattern: !!js/regexp /hello+ (world|to you)/i

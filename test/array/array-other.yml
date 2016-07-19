@@ -1,0 +1,7 @@
+route : get,/array/array-other
+result:
+    type: array
+    maxItems: 10
+    desc: '用户名列表'
+    items:
+        faker: name.findName

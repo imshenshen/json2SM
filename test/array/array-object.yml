@@ -1,0 +1,16 @@
+route : get,/array/array-object
+result:
+    type: array
+    maxItems: 2
+    minItems: 1
+    items:
+        type: object
+        properties:
+            email:
+                desc: 'Email，only gmail'
+                faker: internet.email
+            name:
+                desc: 'User Name'
+                pattern: '[0-9]{5,6}'
+            isVip:
+            city:
