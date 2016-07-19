@@ -1,0 +1,39 @@
+route : get,/api/user #http://localhost:8877/api/user
+doc: # if you don't want the document, remove 'doc'
+    type: markdown
+    path: userInfo/user.md
+    title: CustomerInfo
+params:
+    userId:
+        necessary: true
+        desc : device uuid
+result:
+    type: object
+    properties:
+        code: 200
+        data:
+            type: object
+            properties:
+                realName:
+                    desc: user name
+                    faker: name.findName
+                sex:
+                    desc: '性别 0保密 1男 2女'
+                    type: integer
+                    pattern: !!js/regexp /[0-2]/
+                isVip:
+                    type: integer
+                    pattern: "(1|0)"
+                files:
+                    desc: user files
+                    type: array
+                    minItems: 0
+                    maxItems: 3
+                    items:
+                        type: object
+                        properties:
+                            name:
+                                desc: file name
+                                faker: lorem.word
+                            url:
+                                faker: image.imageUrl
